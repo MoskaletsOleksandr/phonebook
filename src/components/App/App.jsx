@@ -1,22 +1,25 @@
-import { Container } from './App.styled';
-import { ContactList } from 'components/ContactList';
-import { ContactForm } from 'components/ContactForm';
-import { Filter } from 'components/Filter';
-import { SectionTitle } from 'components/common/SectionTitle';
-import { Section } from 'components/common/Section';
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 
-export const App = () => {
+const Home = lazy(() => import('components/pages/HomePage'));
+const Register = lazy(() => import('components/pages/RegisterPage'));
+const Login = lazy(() => import('components/pages/LoginPage'));
+const Contacts = lazy(() => import('components/pages/ContactsPage'));
+const NotFound = lazy(() => import('components/pages/NotFoundPage'));
+
+const App = () => {
   return (
-    <Container>
-      <Section>
-        <SectionTitle title="Phonebook" as="h1" />
-        <ContactForm />
-      </Section>
-      <Section>
-        <SectionTitle title="Contacts"/>
-        <Filter />
-        <ContactList />
-      </Section>
-    </Container>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="contacts" element={<Contacts />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 };
+
+export default App;
