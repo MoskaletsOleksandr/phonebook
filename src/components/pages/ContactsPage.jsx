@@ -1,4 +1,3 @@
-import { Container } from 'components/App/App.styled';
 import { Section } from '../common/Section';
 import { SectionTitle } from '../common/SectionTitle';
 import { ContactForm } from '../ContactForm';
@@ -7,7 +6,7 @@ import { Filter } from '../Filter';
 
 const ContactsPage = () => {
   return (
-    <Container>
+    <>
       <Section>
         <SectionTitle title="Phonebook" as="h1" />
         <ContactForm />
@@ -17,7 +16,7 @@ const ContactsPage = () => {
         <Filter />
         <ContactList />
       </Section>
-    </Container>
+    </>
   );
 };
 

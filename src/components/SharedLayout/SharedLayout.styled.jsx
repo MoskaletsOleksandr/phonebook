@@ -7,6 +7,13 @@ export const Container = styled.div`
   padding: 0 16px;
 `;
 
+export const ContentContainer = styled.div`
+  display: flex;
+  gap: 15px;
+  align-items: stretch;
+  padding: 20px;
+`;
+
 export const Header = styled.header`
   display: flex;
   align-items: center;
