@@ -1,8 +1,10 @@
+import { register } from 'api/auth';
 import { Button } from 'components/common/Button';
 import { Form } from 'components/common/Form';
 import { Input } from 'components/common/Input';
 import { Label } from 'components/common/Label';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const initialFormData = {
@@ -11,6 +13,7 @@ export const RegisterForm = () => {
     password: '',
   };
   const [formData, setFormData] = useState(initialFormData);
+  const navigate = useNavigate();
   const isAddContactButtonDisabled =
     formData.name === '' || formData.email === '' || formData.password === '';
 
@@ -21,7 +24,11 @@ export const RegisterForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(formData);
+
+    register(formData).then(() => {
+      //notification
+      navigate('/login');
+    });
     resetForm();
   };
 
@@ -32,7 +39,7 @@ export const RegisterForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Label>
-        Name
+        Name asdfghjkl
         <Input
           value={formData.name}
           onChange={handleChange}
@@ -41,7 +48,7 @@ export const RegisterForm = () => {
         />
       </Label>
       <Label>
-        Email adgjl@mail.com
+        Email adfgjl@mail.com
         <Input
           value={formData.email}
           onChange={handleChange}
@@ -50,7 +57,7 @@ export const RegisterForm = () => {
         />
       </Label>
       <Label>
-        Password
+        Password asdfghj563214
         <Input
           value={formData.password}
           onChange={handleChange}
@@ -61,6 +68,7 @@ export const RegisterForm = () => {
       <Button type="submit" disabled={isAddContactButtonDisabled}>
         Register
       </Button>
+      <Link to="/login">Login</Link>
     </Form>
   );
 };
