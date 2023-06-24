@@ -1,5 +1,13 @@
+import { SectionTitle } from 'components/common/SectionTitle';
+import { LoginForm } from 'components/LoginForm.jsx';
+
 const LoginPage = () => {
-  return <h2>LoginPage</h2>;
+  return (
+    <>
+      <SectionTitle title="LoginPage"></SectionTitle>
+      <LoginForm />
+    </>
+  );
 };
 
 export default LoginPage;
