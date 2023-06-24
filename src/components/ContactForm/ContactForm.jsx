@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
 import { addContactThunk } from 'redux/thunks';
 import { checkContactExists } from 'utils/contactUtils';
-import { Form, Label, Input } from './ContactForm.styled';
 import { Button } from 'components/common/Button';
 import { Loader } from 'components/common/Loader';
+import { Form } from 'components/common/Form';
+import { Label } from 'components/common/Label';
+import { Input } from 'components/common/Input';
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', number: '' });

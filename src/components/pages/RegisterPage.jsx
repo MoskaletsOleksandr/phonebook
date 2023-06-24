@@ -1,5 +1,11 @@
+import { SectionTitle } from 'components/common/SectionTitle';
+
 const RegisterPage = () => {
-  return <h2>RegisterPage</h2>;
+  return (
+    <>
+      <SectionTitle title="RegiterPage"></SectionTitle>
+    </>
+  );
 };
 
 export default RegisterPage;
