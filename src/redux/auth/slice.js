@@ -3,6 +3,7 @@ import { loginThunk } from './thunks';
 
 const initialState = {
   token: '',
+  user: null,
   isLoading: false,
   error: null,
 };
@@ -12,14 +13,15 @@ const handlePending = state => {
   state.error = null;
 };
 
-const handleRejected = (state, { error }) => {
+const handleRejected = (state, { payload }) => {
   state.isLoading = false;
-  state.error = error.message;
+  state.error = payload;
 };
 
 const handleLoginFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.token = payload.token;
+  state.user = payload.user;
 };
 
 const authSlice = createSlice({
