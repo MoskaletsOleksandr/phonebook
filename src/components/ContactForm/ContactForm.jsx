@@ -10,7 +10,8 @@ import { Label } from 'components/common/Label';
 import { Input } from 'components/common/Input';
 
 export const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: '', number: '' });
+  const initialFormData = { name: '', number: '' };
+  const [formData, setFormData] = useState(initialFormData);
   const { items: contacts, isLoading } = useSelector(selectContacts);
   const dispatch = useDispatch();
   const isAddContactButtonDisabled =
@@ -37,7 +38,7 @@ export const ContactForm = () => {
   };
 
   const resetForm = () => {
-    setFormData({ name: '', number: '' });
+    setFormData(initialFormData);
   };
 
   return (

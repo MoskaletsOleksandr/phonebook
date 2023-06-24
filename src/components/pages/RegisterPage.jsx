@@ -1,9 +1,11 @@
 import { SectionTitle } from 'components/common/SectionTitle';
+import { RegisterForm } from 'components/RegisterForm';
 
 const RegisterPage = () => {
   return (
     <>
-      <SectionTitle title="RegiterPage"></SectionTitle>
+      <SectionTitle title="RegisterPage"></SectionTitle>
+      <RegisterForm />
     </>
   );
 };
