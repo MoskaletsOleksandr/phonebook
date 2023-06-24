@@ -9,5 +9,7 @@ export const register = async body => {
 };
 
 export const login = async body => {
-  return await instance.post('/login', body);
+  const { data } = await instance.post('/login', body);
+  console.log(data);
+  return data;
 };

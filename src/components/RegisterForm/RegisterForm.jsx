@@ -1,4 +1,4 @@
-import { register } from 'api/auth';
+import { register } from 'api/authApi';
 import { Button } from 'components/common/Button';
 import { Form } from 'components/common/Form';
 import { Input } from 'components/common/Input';

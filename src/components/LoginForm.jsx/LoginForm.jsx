@@ -1,10 +1,11 @@
-import { login } from 'api/auth';
 import { Button } from 'components/common/Button';
 import { Form } from 'components/common/Form';
 import { Input } from 'components/common/Input';
 import { Label } from 'components/common/Label';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { loginThunk } from 'redux/auth/thunks';
 
 export const LoginForm = () => {
   const initialFormData = {
@@ -12,6 +13,7 @@ export const LoginForm = () => {
     password: '',
   };
   const [formData, setFormData] = useState(initialFormData);
+  const dispatch = useDispatch();
   const isAddContactButtonDisabled =
     formData.email === '' || formData.password === '';
 
@@ -22,7 +24,7 @@ export const LoginForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    login(formData);
+    dispatch(loginThunk(formData));
     resetForm();
   };
 
