@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteContactThunk } from 'redux/thunks';
+import {
+  // useDispatch,
+  useSelector,
+} from 'react-redux';
 import {
   ContactInfo,
   ContactItem,
@@ -14,7 +16,7 @@ import { deleteContact } from 'api/contactsApiNew';
 export const Contact = ({ name, number, id }) => {
   const { isLoading } = useSelector(selectContacts);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleDeleteContact = id => {
     deleteContact(id);

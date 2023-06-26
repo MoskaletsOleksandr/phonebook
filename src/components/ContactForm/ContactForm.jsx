@@ -12,7 +12,7 @@ import { Form } from 'components/common/Form';
 import { Label } from 'components/common/Label';
 import { Input } from 'components/common/Input';
 // import { createNewContactThunk } from 'redux/contacts/thunks';
-import { createNewContact } from 'api/contactsApiNew';
+import { createNewContact, updateContact } from 'api/contactsApiNew';
 
 export const ContactForm = () => {
   const initialFormData = { name: '', number: '' };
@@ -32,10 +32,13 @@ export const ContactForm = () => {
     // const { name, number: phone } = formData;
     const { name } = formData;
 
-    const contactExists = checkContactExists(contacts, name);
+    const existingContactId = checkContactExists(contacts, name);
 
-    if (contactExists) {
-      alert(`${name} is already in contacts.`);
+    if (existingContactId) {
+      // alert(`${name} is already in contacts.`);
+      console.log(existingContactId);
+      updateContact(existingContactId, formData);
+
       return;
     }
 
