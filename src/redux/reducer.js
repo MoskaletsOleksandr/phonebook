@@ -1,10 +1,10 @@
+import { combineReducers } from '@reduxjs/toolkit';
 import { authReducer } from './auth/slice';
 import { contactsReducer } from './contacts/slice';
-import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 // import { contactsReducer } from './contactsSlice';
-
 const persistConfig = {
   key: 'token',
   storage,
@@ -13,7 +13,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, authReducer);
 
-export const reducer = {
+export const reducer = combineReducers({
   contacts: contactsReducer,
   auth: persistedReducer,
-};
+});

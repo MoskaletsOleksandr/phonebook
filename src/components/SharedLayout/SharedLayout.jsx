@@ -11,7 +11,7 @@ import {
 } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
-  const { token: isAuth, user } = useSelector(state => state.auth);
+  const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const handleLogout = () => {
     console.log('click');
@@ -28,7 +28,7 @@ export const SharedLayout = () => {
           <Link to="/register" end>
             Register
           </Link>
-          {!isAuth ? (
+          {!user ? (
             <Link to="/login" end>
               Login
             </Link>

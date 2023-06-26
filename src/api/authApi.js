@@ -15,3 +15,8 @@ export const logout = async () => {
   deleteToken();
   return data;
 };
+
+export const getCurrent = async () => {
+  const { data } = await authInstance.get('/current');
+  return data;
+};
