@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { initialState } from './initialState';
 import { loginThunk, logoutThunk } from './thunks';
-
-const initialState = {
-  token: '',
-  user: null,
-  isLoading: false,
-  error: null,
-};
 
 const handlePending = state => {
   state.isLoading = true;

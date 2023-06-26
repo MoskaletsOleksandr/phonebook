@@ -1,16 +1,4 @@
-import axios from 'axios';
-
-const authInstance = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com/users',
-});
-
-const setToken = token => {
-  authInstance.defaults.headers.common['Authorization'] = token;
-};
-
-const deleteToken = () => {
-  delete authInstance.defaults.headers.common['Authorization'];
-};
+import { authInstance, deleteToken, setToken } from './axiosConfig';
 
 export const register = async body => {
   return await authInstance.post('/signup', body);
