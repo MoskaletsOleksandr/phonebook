@@ -7,6 +7,8 @@ export const getContacts = async () => {
 
 export const createNewContact = async body => {
   const { data } = await contactsInstance.post('', body);
-  console.log(data);
   return data;
+};
+export const deleteContact = async id => {
+  await contactsInstance.delete(`/${id}`);
 };

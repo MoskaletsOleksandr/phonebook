@@ -9,6 +9,7 @@ import {
   DeleteButton,
 } from './Contact.styled';
 import { selectContacts } from 'redux/selectors';
+import { deleteContact } from 'api/contactsApiNew';
 
 export const Contact = ({ name, number, id }) => {
   const { isLoading } = useSelector(selectContacts);
@@ -16,7 +17,8 @@ export const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
 
   const handleDeleteContact = id => {
-    dispatch(deleteContactThunk(id));
+    deleteContact(id);
+    // dispatch(deleteContactThunk(id));
   };
 
   return (

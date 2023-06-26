@@ -28,7 +28,6 @@ export const refreshCurrentUserThunk = createAsyncThunk(
     console.log(persistedToken);
 
     if (persistedToken === '') {
-      console.log('Токена нет, уходим из fetchCurrentUser');
       return thunkAPI.rejectWithValue();
     }
 
