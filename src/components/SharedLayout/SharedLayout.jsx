@@ -1,7 +1,8 @@
 import { Button } from 'components/common/Button';
 import { Suspense } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { logoutThunk } from 'redux/auth/thunks';
 import {
   Container,
   ContentContainer,
@@ -11,6 +12,12 @@ import {
 
 export const SharedLayout = () => {
   const { token: isAuth, user } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    console.log('click');
+    dispatch(logoutThunk());
+  };
+
   return (
     <Container>
       <Header>
@@ -26,13 +33,21 @@ export const SharedLayout = () => {
               Login
             </Link>
           ) : (
-            <h3>{user.name}</h3>
+            <>
+              <h3>{user.name}</h3>
+              <Button
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                Logout
+              </Button>
+            </>
           )}
           <Link to="/contacts" end>
             Contacts
           </Link>
         </nav>
-        <Button>button</Button>
       </Header>
       <main>
         <Suspense fallback={<div>Loading...</div>}>
