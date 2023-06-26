@@ -22,9 +22,9 @@ export const SharedLayout = () => {
     <Container>
       <Header>
         <nav>
-          <Link to="/" end>
+          {/* <Link to="/" end>
             Home
-          </Link>
+          </Link> */}
           <Link to="/register" end>
             Register
           </Link>
