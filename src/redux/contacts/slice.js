@@ -12,14 +12,12 @@ const handleRejected = (state, { payload }) => {
 };
 
 const handleGetContactsFulfilled = (state, { payload }) => {
-  console.log(payload);
   state.isLoading = false;
   state.error = null;
   state.items = payload;
 };
 
 const handleAddContactFulfilled = (state, { payload }) => {
-  console.log(payload);
   state.isLoading = false;
   state.error = null;
   state.items = [...state.items, payload];

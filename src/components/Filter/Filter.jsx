@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { getFilteredContactThunk } from 'redux/thunks';
+import { getFilteredContactThunk } from 'redux/contacts/thunks';
 import { Label, Input, FilterContainer } from './Filter.styled';
 
 export const Filter = () => {

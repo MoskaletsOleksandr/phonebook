@@ -26,7 +26,6 @@ const handleLogoutFulfilled = state => {
 };
 
 const handleRefreshCurrentUser = (state, { payload }) => {
-  console.log(payload);
   state.user = payload;
 };
 
