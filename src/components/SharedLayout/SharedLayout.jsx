@@ -8,46 +8,56 @@ import {
   ContentContainer,
   Header,
   Link,
+  Navigation,
+  NavWrap,
 } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+
   const handleLogout = () => {
-    console.log('click');
     dispatch(logoutThunk());
   };
 
   return (
     <Container>
       <Header>
-        <nav>
-          {/* <Link to="/" end>
-            Home
-          </Link> */}
-          <Link to="/register" end>
-            Register
-          </Link>
-          {!user ? (
-            <Link to="/login" end>
-              Login
+        <Navigation>
+          <NavWrap>
+            <Link to="/" end>
+              Home
             </Link>
-          ) : (
-            <>
-              <h3>{user.name}</h3>
-              <Button
-                onClick={() => {
-                  handleLogout();
-                }}
-              >
-                Logout
-              </Button>
-            </>
-          )}
-          <Link to="/contacts" end>
-            Contacts
-          </Link>
-        </nav>
+            {user && (
+              <Link to="/contacts" end>
+                Contacts
+              </Link>
+            )}
+          </NavWrap>
+          <NavWrap>
+            {!user ? (
+              <>
+                <Link to="/register" end>
+                  Register
+                </Link>
+                <Link to="/login" end>
+                  Login
+                </Link>
+              </>
+            ) : (
+              <>
+                <h3>{user.name}</h3>
+                <Button
+                  onClick={() => {
+                    handleLogout();
+                  }}
+                >
+                  Logout
+                </Button>
+              </>
+            )}
+          </NavWrap>
+        </Navigation>
       </Header>
       <main>
         <Suspense fallback={<div>Loading...</div>}>

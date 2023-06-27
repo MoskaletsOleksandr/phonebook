@@ -1,24 +1,23 @@
 import { useState } from 'react';
-import {
-  // useDispatch,
-  useSelector,
-} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
-// import { addContactThunk } from 'redux/thunks';
 import { checkContactExists } from 'utils/contactUtils';
 import { Button } from 'components/common/Button';
 import { Loader } from 'components/common/Loader';
 import { Form } from 'components/common/Form';
 import { Label } from 'components/common/Label';
 import { Input } from 'components/common/Input';
-// import { createNewContactThunk } from 'redux/contacts/thunks';
 import { createNewContact, updateContact } from 'api/contactsApiNew';
+import {
+  // createNewContactThunk,
+  getContactsThunk,
+} from 'redux/contacts/thunks';
 
 export const ContactForm = () => {
   const initialFormData = { name: '', number: '' };
   const [formData, setFormData] = useState(initialFormData);
   const { items: contacts, isLoading } = useSelector(selectContacts);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const isAddContactButtonDisabled =
     formData.name === '' || formData.number === '';
 
@@ -27,24 +26,29 @@ export const ContactForm = () => {
     setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    // const { name, number: phone } = formData;
-    const { name } = formData;
+    const {
+      name,
+      // number
+    } = formData;
 
     const existingContactId = checkContactExists(contacts, name);
 
     if (existingContactId) {
       // alert(`${name} is already in contacts.`);
       console.log(existingContactId);
-      updateContact(existingContactId, formData);
+      await updateContact(existingContactId, formData);
+      dispatch(getContactsThunk());
 
+      resetForm();
       return;
     }
 
-    // dispatch(addContactThunk({ name, phone }));
     // dispatch(createNewContactThunk({ name, number }));
-    createNewContact(formData);
+    await createNewContact(formData);
+    dispatch(getContactsThunk());
+
     resetForm();
   };
 

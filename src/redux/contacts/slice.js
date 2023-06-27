@@ -26,6 +26,11 @@ const handleAddContactFulfilled = (state, { payload }) => {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
+  reducers: {
+    setFilter: (state, { payload }) => {
+      state.filter = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getContactsThunk.fulfilled, handleGetContactsFulfilled)
@@ -36,3 +41,4 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
+export const { setFilter } = contactsSlice.actions;

@@ -1,12 +1,13 @@
 import { useDispatch } from 'react-redux';
-import { getFilteredContactThunk } from 'redux/contacts/thunks';
+import { setFilter } from 'redux/contacts/slice';
+// import { getFilteredContactThunk } from 'redux/contacts/thunks';
 import { Label, Input, FilterContainer } from './Filter.styled';
 
 export const Filter = () => {
   const dispatch = useDispatch();
 
   const handleFilterChange = event => {
-    dispatch(getFilteredContactThunk(event.currentTarget.value));
+    dispatch(setFilter(event.currentTarget.value));
   };
 
   return (

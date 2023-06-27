@@ -17,7 +17,6 @@ export const createNewContactThunk = createAsyncThunk(
   async body => {
     try {
       const { data } = await createNewContactThunk(body);
-      console.log(data);
       return data;
     } catch (error) {}
   }

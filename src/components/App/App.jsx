@@ -6,7 +6,7 @@ import { refreshCurrentUserThunk } from 'redux/auth/thunks';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import PublicRoute from 'components/PublicRoute/PublicRoute';
 
-// const Home = lazy(() => import('components/pages/HomePage'));
+const Home = lazy(() => import('components/pages/HomePage'));
 const Register = lazy(() => import('components/pages/RegisterPage'));
 const Login = lazy(() => import('components/pages/LoginPage'));
 const Contacts = lazy(() => import('components/pages/ContactsPage'));
@@ -22,7 +22,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        {/* <Route index element={<Home />} /> */}
+        <Route index element={<Home />} />
         <Route
           path="register"
           element={

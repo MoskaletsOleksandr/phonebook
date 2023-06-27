@@ -35,7 +35,7 @@ export const LoginForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Label>
-        Email adfgjl@mail.com
+        Email
         <Input
           value={formData.email}
           onChange={handleChange}
@@ -44,7 +44,7 @@ export const LoginForm = () => {
         />
       </Label>
       <Label>
-        Password asdfghj563214
+        Password
         <Input
           value={formData.password}
           onChange={handleChange}

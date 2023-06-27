@@ -7,6 +7,7 @@ import { selectContacts } from 'redux/selectors';
 import { SectionTitle } from 'components/common/SectionTitle';
 import { useEffect } from 'react';
 import { getContactsThunk } from 'redux/contacts/thunks';
+import { getFilteredContacts } from 'utils/filterUtils';
 // import { Button } from 'components/common/Button';
 // import { PaginationWrapper } from './ContactList.styled';
 
@@ -33,11 +34,14 @@ export const ContactList = () => {
   //   setCurrentPage(currentPage + 1);
   // };
 
+  const queryFilter = useSelector(state => state.contacts.filter);
+  const filteredContacts = getFilteredContacts(contacts, queryFilter);
+
   return (
     <>
       {error && <SectionTitle title="Error loading" />}
       <List>
-        {contacts.map(({ id, name, number }) => {
+        {filteredContacts.map(({ id, name, number }) => {
           return <Contact key={id} name={name} number={number} id={id} />;
         })}
       </List>

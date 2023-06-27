@@ -11,12 +11,10 @@ export const createNewContact = async body => {
 };
 
 export const deleteContact = async id => {
-  const { data } = await contactsInstance.delete(`/${id}`);
-  console.log(data);
+  await contactsInstance.delete(`/${id}`);
 };
 
 export const updateContact = async (id, body) => {
   const { data } = await contactsInstance.patch(`/${id}`, body);
-  console.log(data);
   return data;
 };
