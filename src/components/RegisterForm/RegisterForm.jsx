@@ -23,14 +23,16 @@ export const RegisterForm = () => {
     setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-
-    register(formData).then(() => {
-      Notify.success('You have successfully registered in our service');
+    try {
+      await register(formData);
+      Notify.success('You have successfully registered. Please log in.');
       navigate('/login');
-    });
-    resetForm();
+      resetForm();
+    } catch (error) {
+      Notify.failure('Registration failed. Please try again later.');
+    }
   };
 
   const resetForm = () => {
