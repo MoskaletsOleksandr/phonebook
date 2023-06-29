@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialState } from './initialState';
+import { authInitialState } from './initialState';
 import { loginThunk, logoutThunk, refreshCurrentUserThunk } from './thunks';
 
 const handlePending = state => {
@@ -8,6 +8,7 @@ const handlePending = state => {
 };
 
 const handleRejected = (state, { payload }) => {
+  console.log(payload);
   state.isLoading = false;
   state.error = payload;
 };
@@ -31,7 +32,7 @@ const handleRefreshCurrentUser = (state, { payload }) => {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState,
+  initialState: authInitialState,
   extraReducers: builder => {
     builder
       .addCase(loginThunk.fulfilled, handleLoginFulfilled)

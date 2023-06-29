@@ -23,12 +23,15 @@ export const LoginForm = () => {
     setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    dispatch(loginThunk(formData)).then(() => {
+    try {
+      await dispatch(loginThunk(formData)).unwrap();
       Notify.success('You have successfully logged in our service');
-    });
-    resetForm();
+      resetForm();
+    } catch (error) {
+      Notify.failure('Login failed. Please check your credentials.');
+    }
   };
 
   const resetForm = () => {

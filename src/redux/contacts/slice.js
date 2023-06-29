@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialState } from './initialState';
+import { contactsInitialState } from './initialState';
 import { createNewContactThunk, getContactsThunk } from './thunks';
 
 const handlePending = state => {
@@ -25,7 +25,7 @@ const handleAddContactFulfilled = (state, { payload }) => {
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState,
+  initialState: contactsInitialState,
   reducers: {
     setFilter: (state, { payload }) => {
       state.filter = payload;
