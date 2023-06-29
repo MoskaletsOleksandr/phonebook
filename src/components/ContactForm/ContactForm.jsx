@@ -12,13 +12,15 @@ import {
   // createNewContactThunk,
   getContactsThunk,
 } from 'redux/contacts/thunks';
-import { Modal } from 'components/common/Modal';
+import { UpdateContactModal } from 'components/modals/UpdateContact';
 
 export const ContactForm = () => {
   const initialFormData = { name: '', number: '' };
+
   const [formData, setFormData] = useState(initialFormData);
   const [showModal, setShowModal] = useState(false);
-  const [existingContact1, setExistingContact1] = useState(null);
+  const [existingContact, setExistingContact] = useState(null);
+
   const { items: contacts, isLoading } = useSelector(selectContacts);
   const dispatch = useDispatch();
   const isAddContactButtonDisabled =
@@ -30,7 +32,7 @@ export const ContactForm = () => {
   };
 
   const handleUpdateContact = async () => {
-    await updateContact(existingContact1.id, formData);
+    await updateContact(existingContact.id, formData);
     dispatch(getContactsThunk());
 
     resetForm();
@@ -41,17 +43,9 @@ export const ContactForm = () => {
     event.preventDefault();
     const { name } = formData;
 
-    // setExistingContact(checkContactExists(contacts, name));
-
-    // console.log(existingContact);
-    const existingContact = checkContactExists(contacts, name);
-
-    if (existingContact) {
-      setExistingContact1(existingContact);
-
+    if (checkContactExists(contacts, name)) {
+      setExistingContact(checkContactExists(contacts, name));
       toggleModal();
-
-      // resetForm();
       return;
     }
 
@@ -104,20 +98,12 @@ export const ContactForm = () => {
 
       {isLoading && <Loader />}
       {showModal && (
-        <Modal onClose={toggleModal}>
-          <h3>Do you want to update this contact?</h3>
-          <p>
-            The contact <b>{existingContact1.name}</b> already exists in your
-            contact list with the number
-            <b>{existingContact1.number}</b>.
-          </p>
-          <p>
-            Do you want to replace the number of this contact with the number{' '}
-            <b>{formData.number}</b>?
-          </p>
-          <Button onClick={handleUpdateContact}>Yes</Button>
-          <Button onClick={toggleModal}>No</Button>
-        </Modal>
+        <UpdateContactModal
+          closeModal={toggleModal}
+          updateContact={handleUpdateContact}
+          existingContact={existingContact}
+          formData={formData}
+        />
       )}
     </>
   );
