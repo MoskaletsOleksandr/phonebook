@@ -1,3 +1,4 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Button } from 'components/common/Button';
 import { Form } from 'components/common/Form';
 import { Input } from 'components/common/Input';
@@ -24,7 +25,9 @@ export const LoginForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(loginThunk(formData));
+    dispatch(loginThunk(formData)).then(() => {
+      Notify.success('You have successfully logged in our service');
+    });
     resetForm();
   };
 

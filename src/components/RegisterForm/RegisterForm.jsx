@@ -1,4 +1,5 @@
 import { register } from 'api/authApi';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Button } from 'components/common/Button';
 import { Form } from 'components/common/Form';
 import { Input } from 'components/common/Input';
@@ -26,7 +27,7 @@ export const RegisterForm = () => {
     event.preventDefault();
 
     register(formData).then(() => {
-      //notification
+      Notify.success('You have successfully registered in our service');
       navigate('/login');
     });
     resetForm();

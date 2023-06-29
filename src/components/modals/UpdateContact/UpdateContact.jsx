@@ -21,10 +21,9 @@ export const UpdateContactModal = ({
   return (
     <Modal onClose={closeModal}>
       <ContentWrapper>
-        <Title>Do you want to update this contact?</Title>
-
         {!theSameNumber ? (
           <>
+            <Title>Do you want to update this contact?</Title>
             <ContactInfo>
               The contact <b>{name}</b> already exists in your contact list with
               the number <b>{number}</b>.
@@ -40,6 +39,8 @@ export const UpdateContactModal = ({
           </>
         ) : (
           <>
+            <Title>You are trying to add the same contact</Title>
+
             <ContactInfo>
               The contact <b>{name}</b> already exists in your contact list with
               the number <b>{number}</b>.

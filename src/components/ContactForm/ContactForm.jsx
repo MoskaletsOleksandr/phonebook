@@ -7,7 +7,7 @@ import { Loader } from 'components/common/Loader';
 import { Form } from 'components/common/Form';
 import { Label } from 'components/common/Label';
 import { Input } from 'components/common/Input';
-import { createNewContact, updateContact } from 'api/contactsApiNew';
+import { createNewContact, updateContact } from 'api/contactsApi';
 import {
   // createNewContactThunk,
   getContactsThunk,

@@ -8,7 +8,7 @@ import {
   DeleteButton,
 } from './Contact.styled';
 import { selectContacts } from 'redux/selectors';
-import { deleteContact } from 'api/contactsApiNew';
+import { deleteContact } from 'api/contactsApi';
 import { getContactsThunk } from 'redux/contacts/thunks';
 
 export const Contact = ({ name, number, id }) => {

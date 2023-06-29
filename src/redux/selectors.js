@@ -17,13 +17,3 @@ export const selectContacts = createSelector(
     };
   }
 );
-
-// export const selectContacts = state => {
-//   const sortedContacts = [...state.contacts.items].sort((a, b) =>
-//     a.name.localeCompare(b.name)
-//   );
-//   return {
-//     ...state.contacts,
-//     items: sortedContacts,
-//   };
-// };
