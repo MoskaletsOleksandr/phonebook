@@ -12,10 +12,13 @@ import {
   // createNewContactThunk,
   getContactsThunk,
 } from 'redux/contacts/thunks';
+import { Modal } from 'components/common/Modal';
 
 export const ContactForm = () => {
   const initialFormData = { name: '', number: '' };
   const [formData, setFormData] = useState(initialFormData);
+  const [showModal, setShowModal] = useState(false);
+  const [existingContact1, setExistingContact1] = useState(null);
   const { items: contacts, isLoading } = useSelector(selectContacts);
   const dispatch = useDispatch();
   const isAddContactButtonDisabled =
@@ -26,22 +29,29 @@ export const ContactForm = () => {
     setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
   };
 
+  const handleUpdateContact = async () => {
+    await updateContact(existingContact1.id, formData);
+    dispatch(getContactsThunk());
+
+    resetForm();
+    toggleModal();
+  };
+
   const handleSubmit = async event => {
     event.preventDefault();
-    const {
-      name,
-      // number
-    } = formData;
+    const { name } = formData;
 
-    const existingContactId = checkContactExists(contacts, name);
+    // setExistingContact(checkContactExists(contacts, name));
 
-    if (existingContactId) {
-      // alert(`${name} is already in contacts.`);
-      console.log(existingContactId);
-      await updateContact(existingContactId, formData);
-      dispatch(getContactsThunk());
+    // console.log(existingContact);
+    const existingContact = checkContactExists(contacts, name);
 
-      resetForm();
+    if (existingContact) {
+      setExistingContact1(existingContact);
+
+      toggleModal();
+
+      // resetForm();
       return;
     }
 
@@ -54,6 +64,10 @@ export const ContactForm = () => {
 
   const resetForm = () => {
     setFormData(initialFormData);
+  };
+
+  const toggleModal = () => {
+    setShowModal(prevShowModal => !prevShowModal);
   };
 
   return (
@@ -89,6 +103,22 @@ export const ContactForm = () => {
       </Form>
 
       {isLoading && <Loader />}
+      {showModal && (
+        <Modal onClose={toggleModal}>
+          <h3>Do you want to update this contact?</h3>
+          <p>
+            The contact <b>{existingContact1.name}</b> already exists in your
+            contact list with the number
+            <b>{existingContact1.number}</b>.
+          </p>
+          <p>
+            Do you want to replace the number of this contact with the number{' '}
+            <b>{formData.number}</b>?
+          </p>
+          <Button onClick={handleUpdateContact}>Yes</Button>
+          <Button onClick={toggleModal}>No</Button>
+        </Modal>
+      )}
     </>
   );
 };
