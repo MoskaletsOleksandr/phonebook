@@ -14,11 +14,16 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk('auth/logout', async () => {
-  try {
-    await logout();
-  } catch (error) {}
-});
+export const logoutThunk = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      await logout();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const refreshCurrentUserThunk = createAsyncThunk(
   'auth/refresh',
