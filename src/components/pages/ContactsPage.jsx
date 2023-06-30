@@ -6,9 +6,9 @@ import { Filter } from '../Filter';
 
 const ContactsPage = () => {
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
       <Section>
-        <SectionTitle title="Phonebook" as="h1" />
+        <SectionTitle title="Add a new contact" as="h1" />
         <ContactForm />
       </Section>
       <Section>
@@ -16,7 +16,7 @@ const ContactsPage = () => {
         <Filter />
         <ContactList />
       </Section>
-    </>
+    </div>
   );
 };
 

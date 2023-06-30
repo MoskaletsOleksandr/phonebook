@@ -29,7 +29,6 @@ export const ContactList = () => {
   };
 
   const { filter } = useSelector(selectContacts);
-  console.log(filter);
   const filteredContacts = useMemo(
     () => getFilteredContacts(contacts, filter),
     [contacts, filter]
