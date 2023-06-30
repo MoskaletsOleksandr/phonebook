@@ -64,8 +64,10 @@ export const RegisterForm = () => {
         <Input
           value={formData.password}
           onChange={handleChange}
-          type="text"
+          type="password"
           name="password"
+          pattern=".{7,}"
+          title="Password must be at least 7 characters long"
         />
       </Label>
       <Button type="submit" disabled={isAddContactButtonDisabled}>
