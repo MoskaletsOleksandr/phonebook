@@ -39,7 +39,9 @@ export const ContactList = () => {
 
   return (
     <>
-      {error && <SectionTitle title="Error loading... Check your connection" />}
+      {error && (
+        <SectionTitle title="Error loading... Check your connection or try later" />
+      )}
       <List>
         {filteredContacts.map(({ id, name, number }) => {
           return <Contact key={id} name={name} number={number} id={id} />;

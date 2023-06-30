@@ -9,7 +9,7 @@ import {
 } from './Contact.styled';
 import { selectContacts } from 'redux/selectors';
 import { deleteContact } from 'api/contactsApi';
-import { getContactsThunk } from 'redux/contacts/thunks';
+import { deleteContactThunk, getContactsThunk } from 'redux/contacts/thunks';
 
 export const Contact = ({ name, number, id }) => {
   const { isLoading } = useSelector(selectContacts);
@@ -17,10 +17,10 @@ export const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
 
   const handleDeleteContact = async id => {
-    await deleteContact(id);
-    dispatch(getContactsThunk());
+    // await deleteContact(id);
+    // dispatch(getContactsThunk());
 
-    // dispatch(deleteContactThunk(id));
+    await dispatch(deleteContactThunk(id));
   };
 
   return (
