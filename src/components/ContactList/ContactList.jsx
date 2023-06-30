@@ -2,40 +2,49 @@ import { List } from './ContactList.styled';
 import { Contact } from './Contact/Contact';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
-// import { useEffect, useState } from 'react';
-// import { getContactsThunk } from 'redux/thunks';
+import { useEffect, useState, useMemo } from 'react';
 import { SectionTitle } from 'components/common/SectionTitle';
-import { useEffect } from 'react';
 import { getContactsThunk } from 'redux/contacts/thunks';
 import { getFilteredContacts } from 'utils/filterUtils';
-// import { Button } from 'components/common/Button';
-// import { PaginationWrapper } from './ContactList.styled';
+import { Button } from 'components/common/Button';
+import { PaginationWrapper } from './ContactList.styled';
 
 export const ContactList = () => {
   const { items: contacts, error } = useSelector(selectContacts);
   const dispatch = useDispatch();
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const isNextButtonDisabled = contacts.length < 10;
-  // const isPrevButtonDisabled = currentPage === 1;
-
-  // useEffect(() => {
-  //   dispatch(getContactsThunk(currentPage));
-  // }, [dispatch, currentPage]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [endIndex, setEndIndex] = useState(1);
+  const contactsPerPage = 5;
 
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
 
-  // const handlePrevPage = () => {
-  //   setCurrentPage(currentPage - 1);
-  // };
+  const handlePrevPage = () => {
+    setCurrentPage(prevPage => prevPage - 1);
+  };
 
-  // const handleNextPage = () => {
-  //   setCurrentPage(currentPage + 1);
-  // };
+  const handleNextPage = () => {
+    setCurrentPage(prevPage => prevPage + 1);
+  };
 
   const queryFilter = useSelector(state => state.contacts.filter);
-  const filteredContacts = getFilteredContacts(contacts, queryFilter);
+  const filteredContacts = useMemo(
+    () => getFilteredContacts(contacts, queryFilter),
+    [contacts, queryFilter]
+  );
+
+  const currentContacts = useMemo(() => {
+    const startIndex = (currentPage - 1) * contactsPerPage;
+    setEndIndex(startIndex + contactsPerPage);
+    return filteredContacts.slice(startIndex, endIndex);
+  }, [currentPage, filteredContacts, endIndex]);
+
+  useEffect(() => {
+    if (currentContacts.length === 0 && currentPage > 1) {
+      setCurrentPage(prevPage => prevPage - 1);
+    }
+  }, [currentContacts, currentPage]);
 
   return (
     <>
@@ -43,18 +52,21 @@ export const ContactList = () => {
         <SectionTitle title="Error loading... Check your connection or try later" />
       )}
       <List>
-        {filteredContacts.map(({ id, name, number }) => {
-          return <Contact key={id} name={name} number={number} id={id} />;
-        })}
+        {currentContacts.map(({ id, name, number }) => (
+          <Contact key={id} name={name} number={number} id={id} />
+        ))}
       </List>
-      {/* <PaginationWrapper>
-        <Button onClick={handlePrevPage} disabled={isPrevButtonDisabled}>
+      <PaginationWrapper>
+        <Button onClick={handlePrevPage} disabled={currentPage === 1}>
           Previous page
         </Button>
-        <Button onClick={handleNextPage} disabled={isNextButtonDisabled}>
+        <Button
+          onClick={handleNextPage}
+          disabled={endIndex >= filteredContacts.length}
+        >
           Next page
         </Button>
-      </PaginationWrapper> */}
+      </PaginationWrapper>
     </>
   );
 };
