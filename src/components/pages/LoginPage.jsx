@@ -14,7 +14,7 @@ const LoginPage = () => {
   }, [user, navigate]);
   return (
     <>
-      <SectionTitle title="LoginPage"></SectionTitle>
+      <SectionTitle title="Sign in to access your contacts"></SectionTitle>
       <LoginForm />
     </>
   );

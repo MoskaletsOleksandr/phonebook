@@ -23,8 +23,8 @@ export const selectContacts = createSelector(
     );
     return {
       items: sortedContacts,
-      isLoading: selectContactsError,
-      error: selectContactsIsLoading,
+      isLoading: selectContactsIsLoading,
+      error: selectContactsError,
       filter: selectContactsFilter,
     };
   }

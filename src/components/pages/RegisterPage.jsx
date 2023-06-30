@@ -4,7 +4,7 @@ import { RegisterForm } from 'components/RegisterForm';
 const RegisterPage = () => {
   return (
     <>
-      <SectionTitle title="RegisterPage"></SectionTitle>
+      <SectionTitle title="Please register first"></SectionTitle>
       <RegisterForm />
     </>
   );

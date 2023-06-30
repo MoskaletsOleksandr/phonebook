@@ -1,5 +1,7 @@
+import { SectionTitle } from 'components/common/SectionTitle';
+
 const HomePage = () => {
-  return <h2>HomePage</h2>;
+  return <SectionTitle title="Welcome to your personal phone book" />;
 };
 
 export default HomePage;
