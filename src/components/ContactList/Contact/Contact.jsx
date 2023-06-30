@@ -8,19 +8,15 @@ import {
   DeleteButton,
 } from './Contact.styled';
 import { selectContacts } from 'redux/selectors';
-import { deleteContact } from 'api/contactsApi';
-import { deleteContactThunk, getContactsThunk } from 'redux/contacts/thunks';
+import { deleteContactThunk } from 'redux/contacts/thunks';
 
 export const Contact = ({ name, number, id }) => {
   const { isLoading } = useSelector(selectContacts);
 
   const dispatch = useDispatch();
 
-  const handleDeleteContact = async id => {
-    // await deleteContact(id);
-    // dispatch(getContactsThunk());
-
-    await dispatch(deleteContactThunk(id));
+  const handleDeleteContact = id => {
+    dispatch(deleteContactThunk(id));
   };
 
   return (

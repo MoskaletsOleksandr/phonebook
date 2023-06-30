@@ -3,15 +3,15 @@ import { LoginForm } from 'components/LoginForm.jsx';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { selectAuth } from 'redux/selectors';
 
 const LoginPage = () => {
-  const isAuth = useSelector(state => state.auth.user);
+  const { user } = useSelector(selectAuth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    isAuth && navigate('/contacts');
-    // isAuth && Notification
-  }, [isAuth, navigate]);
+    user && navigate('/contacts');
+  }, [user, navigate]);
   return (
     <>
       <SectionTitle title="LoginPage"></SectionTitle>

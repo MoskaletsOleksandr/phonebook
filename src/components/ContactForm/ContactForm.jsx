@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors';
 import { checkContactExists } from 'utils/contactUtils';
@@ -18,12 +18,19 @@ export const ContactForm = () => {
 
   const [formData, setFormData] = useState(initialFormData);
   const [showModal, setShowModal] = useState(false);
-  const [existingContact, setExistingContact] = useState(null);
 
   const { items: contacts, isLoading } = useSelector(selectContacts);
   const dispatch = useDispatch();
-  const isAddContactButtonDisabled =
-    formData.name === '' || formData.number === '';
+
+  const isAddContactButtonDisabled = useMemo(
+    () => formData.name === '' || formData.number === '',
+    [formData.name, formData.number]
+  );
+
+  const existingContact = useMemo(
+    () => checkContactExists(contacts, formData.name),
+    [contacts, formData.name]
+  );
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -39,10 +46,8 @@ export const ContactForm = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    const { name } = formData;
 
-    if (checkContactExists(contacts, name)) {
-      setExistingContact(checkContactExists(contacts, name));
+    if (existingContact) {
       toggleModal();
       return;
     }

@@ -1,5 +1,5 @@
 import { Navigation } from 'components/Navigation';
-import { NavMenu } from 'components/NuvMenu';
+import { NavMenu } from 'components/NavMenu';
 import { UserMenu } from 'components/UserMenu';
 import { Suspense } from 'react';
 import { useSelector } from 'react-redux';

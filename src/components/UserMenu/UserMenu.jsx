@@ -1,10 +1,11 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from 'redux/auth/thunks';
+import { selectAuth } from 'redux/selectors';
 import { UserEmail, UserMenuButton, UserMenuWrapper } from './UserMenu.styled';
 
 export const UserMenu = () => {
-  const { user } = useSelector(state => state.auth);
+  const { user } = useSelector(selectAuth);
   const dispatch = useDispatch();
 
   const handleLogout = async () => {

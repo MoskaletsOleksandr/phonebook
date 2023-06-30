@@ -28,10 +28,11 @@ export const ContactList = () => {
     setCurrentPage(prevPage => prevPage + 1);
   };
 
-  const queryFilter = useSelector(state => state.contacts.filter);
+  const { filter } = useSelector(selectContacts);
+  console.log(filter);
   const filteredContacts = useMemo(
-    () => getFilteredContacts(contacts, queryFilter),
-    [contacts, queryFilter]
+    () => getFilteredContacts(contacts, filter),
+    [contacts, filter]
   );
 
   const currentContacts = useMemo(() => {

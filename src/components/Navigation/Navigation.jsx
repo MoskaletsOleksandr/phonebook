@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
+import { selectAuth } from 'redux/selectors';
 import { Link, NavigationStyled } from './Navigation.styled';
 
 export const Navigation = ({ children }) => {
-  const { user } = useSelector(state => state.auth);
+  const { user } = useSelector(selectAuth);
 
   return (
     <NavigationStyled>
