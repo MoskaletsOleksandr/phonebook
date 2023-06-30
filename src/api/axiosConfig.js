@@ -9,8 +9,12 @@ export const contactsInstance = axios.create({
 });
 
 export const setToken = token => {
-  authInstance.defaults.headers.common['Authorization'] = token;
-  contactsInstance.defaults.headers.common['Authorization'] = token;
+  if (token) {
+    authInstance.defaults.headers.common['Authorization'] = token;
+    contactsInstance.defaults.headers.common['Authorization'] = token;
+  } else {
+    deleteToken();
+  }
 };
 
 export const deleteToken = () => {

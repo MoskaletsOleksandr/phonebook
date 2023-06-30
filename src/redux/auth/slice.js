@@ -31,6 +31,9 @@ const handleRefreshCurrentUserFulfilled = (state, { payload }) => {
 
 const handleRefreshCurrentUserRejected = (state, { payload }) => {
   state.token = '';
+  state.user = null;
+  state.isLoading = false;
+  state.error = payload;
 };
 
 const authSlice = createSlice({
