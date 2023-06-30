@@ -7,10 +7,9 @@ import { Loader } from 'components/common/Loader';
 import { Form } from 'components/common/Form';
 import { Label } from 'components/common/Label';
 import { Input } from 'components/common/Input';
-import { createNewContact, updateContact } from 'api/contactsApi';
 import {
-  // createNewContactThunk,
-  getContactsThunk,
+  createNewContactThunk,
+  updateContactThunk,
 } from 'redux/contacts/thunks';
 import { UpdateContactModal } from 'components/modals/UpdateContact';
 
@@ -32,8 +31,7 @@ export const ContactForm = () => {
   };
 
   const handleUpdateContact = async () => {
-    await updateContact(existingContact.id, formData);
-    dispatch(getContactsThunk());
+    dispatch(updateContactThunk({ id: existingContact.id, body: formData }));
 
     resetForm();
     toggleModal();
@@ -49,10 +47,7 @@ export const ContactForm = () => {
       return;
     }
 
-    // dispatch(createNewContactThunk({ name, number }));
-    await createNewContact(formData);
-    dispatch(getContactsThunk());
-
+    dispatch(createNewContactThunk(formData));
     resetForm();
   };
 
