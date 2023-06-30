@@ -8,7 +8,6 @@ const handlePending = state => {
 };
 
 const handleRejected = (state, { payload }) => {
-  console.log(payload);
   state.isLoading = false;
   state.error = payload;
 };
@@ -26,8 +25,12 @@ const handleLogoutFulfilled = state => {
   state.error = null;
 };
 
-const handleRefreshCurrentUser = (state, { payload }) => {
+const handleRefreshCurrentUserFulfilled = (state, { payload }) => {
   state.user = payload;
+};
+
+const handleRefreshCurrentUserRejected = (state, { payload }) => {
+  state.token = '';
 };
 
 const authSlice = createSlice({
@@ -37,7 +40,14 @@ const authSlice = createSlice({
     builder
       .addCase(loginThunk.fulfilled, handleLoginFulfilled)
       .addCase(logoutThunk.fulfilled, handleLogoutFulfilled)
-      .addCase(refreshCurrentUserThunk.fulfilled, handleRefreshCurrentUser)
+      .addCase(
+        refreshCurrentUserThunk.fulfilled,
+        handleRefreshCurrentUserFulfilled
+      )
+      .addCase(
+        refreshCurrentUserThunk.rejected,
+        handleRefreshCurrentUserRejected
+      )
       .addMatcher(({ type }) => type.endsWith('/pending'), handlePending)
       .addMatcher(({ type }) => type.endsWith('/rejected'), handleRejected);
   },

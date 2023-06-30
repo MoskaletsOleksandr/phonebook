@@ -11,10 +11,8 @@ export const login = async body => {
 };
 
 export const logout = async () => {
-  // const { data } = await authInstance.post('/logout');
   await authInstance.post('/logout');
   deleteToken();
-  // return data;
 };
 
 export const getCurrent = async () => {

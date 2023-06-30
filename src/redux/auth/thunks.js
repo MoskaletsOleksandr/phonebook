@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getCurrent, login, logout } from 'api/authApi';
-import { setToken } from 'api/axiosConfig';
+import { deleteToken, setToken } from 'api/axiosConfig';
 
 export const loginThunk = createAsyncThunk(
   'auth/login',
@@ -36,7 +36,12 @@ export const refreshCurrentUserThunk = createAsyncThunk(
     }
 
     setToken(persistedToken);
-    const data = await getCurrent();
-    return data;
+    try {
+      const data = await getCurrent();
+      return data;
+    } catch (error) {
+      deleteToken();
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
