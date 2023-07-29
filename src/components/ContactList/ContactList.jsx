@@ -58,13 +58,13 @@ export const ContactList = () => {
       </List>
       <PaginationWrapper>
         <Button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Previous page
+          Previous
         </Button>
         <Button
           onClick={handleNextPage}
           disabled={endIndex >= filteredContacts.length}
         >
-          Next page
+          Next
         </Button>
       </PaginationWrapper>
     </>
