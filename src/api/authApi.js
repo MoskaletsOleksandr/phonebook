@@ -1,7 +1,9 @@
 import { authInstance, deleteToken, setToken } from './axiosConfig';
 
 export const register = async body => {
-  return await authInstance.post('/signup', body);
+  const { data } = await authInstance.post('/signup', body);
+  if ('token' in data) setToken(`Bearer ${data.token}`);
+  return data;
 };
 
 export const login = async body => {

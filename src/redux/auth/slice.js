@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { authInitialState } from './initialState';
-import { loginThunk, logoutThunk, refreshCurrentUserThunk } from './thunks';
+import {
+  loginThunk,
+  logoutThunk,
+  refreshCurrentUserThunk,
+  registerThunk,
+} from './thunks';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -10,6 +15,12 @@ const handlePending = state => {
 const handleRejected = (state, { payload }) => {
   state.isLoading = false;
   state.error = payload;
+};
+
+const handleRegisterFulfilled = (state, { payload }) => {
+  state.isLoading = false;
+  state.token = payload.token;
+  state.user = payload.user;
 };
 
 const handleLoginFulfilled = (state, { payload }) => {
@@ -41,6 +52,7 @@ const authSlice = createSlice({
   initialState: authInitialState,
   extraReducers: builder => {
     builder
+      .addCase(registerThunk.fulfilled, handleRegisterFulfilled)
       .addCase(loginThunk.fulfilled, handleLoginFulfilled)
       .addCase(logoutThunk.fulfilled, handleLogoutFulfilled)
       .addCase(

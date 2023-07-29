@@ -1,11 +1,12 @@
-import { register } from 'api/authApi';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Button } from 'components/common/Button';
 import { Form } from 'components/common/Form';
 import { Input } from 'components/common/Input';
 import { Label } from 'components/common/Label';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { registerThunk } from 'redux/auth/thunks';
 
 export const RegisterForm = () => {
   const initialFormData = {
@@ -14,7 +15,8 @@ export const RegisterForm = () => {
     password: '',
   };
   const [formData, setFormData] = useState(initialFormData);
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const isAddContactButtonDisabled =
     formData.name === '' || formData.email === '' || formData.password === '';
 
@@ -26,9 +28,8 @@ export const RegisterForm = () => {
   const handleSubmit = async event => {
     event.preventDefault();
     try {
-      await register(formData);
+      await dispatch(registerThunk(formData)).unwrap();
       Notify.success('You have successfully registered. Please log in.');
-      navigate('/login');
       resetForm();
     } catch (error) {
       Notify.failure('Registration failed. Please try again later.');
