@@ -1,3 +1,4 @@
+import { Loader } from 'components/common/Loader';
 import { Navigation } from 'components/Navigation';
 import { NavMenu } from 'components/NavMenu';
 import { UserMenu } from 'components/UserMenu';
@@ -21,7 +22,7 @@ export const SharedLayout = () => {
         <Navigation>{!user ? <NavMenu /> : <UserMenu />}</Navigation>
       </Header>
       <Main>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <ContentContainer>
             <Outlet />
           </ContentContainer>
