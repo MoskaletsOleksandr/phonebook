@@ -5,6 +5,7 @@ import {
   ContactItem,
   ContactName,
   ContactNumber,
+  ContactWrapper,
   DeleteButton,
 } from './Contact.styled';
 import { selectContacts } from 'redux/selectors';
@@ -21,17 +22,19 @@ export const Contact = ({ name, number, id }) => {
 
   return (
     <ContactItem>
-      <ContactInfo>
-        <ContactName>{name}:</ContactName>
-        <ContactNumber>{number}</ContactNumber>
-      </ContactInfo>
-      <DeleteButton
-        type="button"
-        onClick={() => handleDeleteContact(id)}
-        disabled={isLoading}
-      >
-        Delete
-      </DeleteButton>
+      <ContactWrapper>
+        <ContactInfo>
+          <ContactName>{name}:</ContactName>
+          <ContactNumber>{number}</ContactNumber>
+        </ContactInfo>
+        <DeleteButton
+          type="button"
+          onClick={() => handleDeleteContact(id)}
+          disabled={isLoading}
+        >
+          Delete
+        </DeleteButton>
+      </ContactWrapper>
     </ContactItem>
   );
 };

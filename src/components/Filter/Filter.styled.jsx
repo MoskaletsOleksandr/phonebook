@@ -10,7 +10,7 @@ export const Label = styled.label`
   gap: 5px;
   margin-bottom: 5px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
     margin-bottom: 15px;

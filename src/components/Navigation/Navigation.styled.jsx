@@ -15,7 +15,7 @@ export const NavigationWrapper = styled.div`
   gap: 10px;
   align-items: center;
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     flex-direction: column;
   }
 `;

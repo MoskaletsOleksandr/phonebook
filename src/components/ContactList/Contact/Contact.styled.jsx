@@ -1,28 +1,43 @@
 import styled from '@emotion/styled';
 
-export const ContactItem = styled.li`
+export const ContactItem = styled.li``;
+
+export const ContactWrapper = styled.div`
   display: flex;
-  gap: 30%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 `;
 
 export const ContactInfo = styled.div`
+  width: 70%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  flex: 1;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 export const ContactName = styled.span`
+  text-align: start;
+  display: block;
   font-weight: bold;
   margin-right: 5px;
+  word-break: break-all;
+
+  @media (min-width: 767px) {
+    width: 50%;
+  }
 `;
 
 export const ContactNumber = styled.span`
+  display: block;
   color: #666;
   margin-right: 10px;
+  word-break: break-all;
 `;
 
 export const DeleteButton = styled.button`
