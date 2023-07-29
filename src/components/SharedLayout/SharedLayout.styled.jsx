@@ -25,6 +25,8 @@ export const Header = styled.header`
   border-bottom: 1px solid black;
 `;
 
+export const Main = styled.main``;
+
 export const Navigation = styled.nav`
   display: flex;
   justify-content: space-between;
