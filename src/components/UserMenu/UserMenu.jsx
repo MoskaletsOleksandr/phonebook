@@ -1,3 +1,4 @@
+import { NavigationWrapper } from 'components/Navigation/Navigation.styled';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from 'redux/auth/thunks';
@@ -19,14 +20,16 @@ export const UserMenu = () => {
 
   return (
     <UserMenuWrapper>
-      <UserEmail>{user.email}</UserEmail>
-      <UserMenuButton
-        onClick={() => {
-          handleLogout();
-        }}
-      >
-        Logout
-      </UserMenuButton>
+      <NavigationWrapper>
+        <UserEmail>{user.email}</UserEmail>
+        <UserMenuButton
+          onClick={() => {
+            handleLogout();
+          }}
+        >
+          Logout
+        </UserMenuButton>
+      </NavigationWrapper>
     </UserMenuWrapper>
   );
 };

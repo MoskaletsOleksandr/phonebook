@@ -9,6 +9,17 @@ export const NavigationStyled = styled.nav`
   align-items: center;
 `;
 
+export const NavigationWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
 export const Link = styled(NavLink)`
   padding: 8px 16px;
   border-radius: 4px;
