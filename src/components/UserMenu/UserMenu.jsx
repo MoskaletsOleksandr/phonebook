@@ -1,6 +1,7 @@
 import { NavigationWrapper } from 'components/Navigation/Navigation.styled';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logoutThunk } from 'redux/auth/thunks';
 import { selectAuth } from 'redux/selectors';
 import { UserEmail, UserMenuButton, UserMenuWrapper } from './UserMenu.styled';
@@ -21,6 +22,7 @@ export const UserMenu = () => {
   return (
     <UserMenuWrapper>
       <NavigationWrapper>
+        <Link to="/profile">Profile</Link>
         <UserEmail>{user.email}</UserEmail>
         <UserMenuButton
           onClick={() => {

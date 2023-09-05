@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getCurrent, login, logout, register } from 'api/authApi';
-import { deleteToken, setToken } from 'api/axiosConfig';
+import { authInstance, deleteToken, setToken } from 'api/axiosConfig';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
@@ -53,6 +53,24 @@ export const refreshCurrentUserThunk = createAsyncThunk(
       return data;
     } catch (error) {
       deleteToken();
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateAvatarThunk = createAsyncThunk(
+  'auth/avatar',
+  async (file, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatar', file);
+      const { data } = await authInstance.patch('/avatar', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
