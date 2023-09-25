@@ -11,7 +11,7 @@ export const createNewContact = async body => {
 };
 
 export const updateContact = async (id, body) => {
-  const { data } = await contactsInstance.put(`/${id}`, body);
+  const { data } = await contactsInstance.patch(`/${id}`, body);
   return data;
 };
 

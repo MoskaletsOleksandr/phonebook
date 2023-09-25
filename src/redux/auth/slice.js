@@ -5,7 +5,6 @@ import {
   logoutThunk,
   refreshCurrentUserThunk,
   registerThunk,
-  updateAvatarThunk,
 } from './thunks';
 
 const handlePending = state => {
@@ -37,12 +36,6 @@ const handleLogoutFulfilled = state => {
   state.error = null;
 };
 
-const handleUpdateAvatarFulfilled = (state, { payload }) => {
-  state.user.avatarURL = payload.avatar;
-  // state.isLoading = false;
-  // state.error = null;
-};
-
 const handleRefreshCurrentUserFulfilled = (state, { payload }) => {
   state.user = payload;
 };
@@ -62,7 +55,6 @@ const authSlice = createSlice({
       .addCase(registerThunk.fulfilled, handleRegisterFulfilled)
       .addCase(loginThunk.fulfilled, handleLoginFulfilled)
       .addCase(logoutThunk.fulfilled, handleLogoutFulfilled)
-      .addCase(updateAvatarThunk.fulfilled, handleUpdateAvatarFulfilled)
       .addCase(
         refreshCurrentUserThunk.fulfilled,
         handleRefreshCurrentUserFulfilled

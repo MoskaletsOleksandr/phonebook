@@ -11,8 +11,6 @@ const Register = lazy(() => import('components/pages/RegisterPage'));
 const Login = lazy(() => import('components/pages/LoginPage'));
 const Contacts = lazy(() => import('components/pages/ContactsPage'));
 const NotFound = lazy(() => import('components/pages/NotFoundPage'));
-const Profile = lazy(() => import('components/pages/ProfilePage'));
-const ProfileUpdating = lazy(() => import('components/pages/UpdateProfile'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,22 +44,6 @@ const App = () => {
           element={
             <PrivateRoute>
               <Contacts />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="profile"
-          element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="profile/update"
-          element={
-            <PrivateRoute>
-              <ProfileUpdating />
             </PrivateRoute>
           }
         />

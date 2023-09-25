@@ -52,8 +52,8 @@ export const ContactList = () => {
         <SectionTitle title="Error loading... Check your connection or try later" />
       )}
       <List>
-        {currentContacts.map(({ _id, name, number }) => (
-          <Contact key={_id} name={name} number={number} id={_id} />
+        {currentContacts.map(({ id, name, number }) => (
+          <Contact key={id} name={name} number={number} id={id} />
         ))}
       </List>
       <PaginationWrapper>

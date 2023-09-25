@@ -38,7 +38,7 @@ export const ContactForm = () => {
   };
 
   const handleUpdateContact = async () => {
-    dispatch(updateContactThunk({ id: existingContact._id, body: formData }));
+    dispatch(updateContactThunk({ id: existingContact.id, body: formData }));
 
     resetForm();
     toggleModal();
