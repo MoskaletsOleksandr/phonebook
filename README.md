@@ -25,27 +25,32 @@ leverages Redux for state management and React Router for routing.
 
 This application is built using the following technologies:
 
-- **React**: A JavaScript library for crafting user interfaces.
+- **[React](https://reactjs.org/)**: A JavaScript library for crafting user
+  interfaces.
 
-- **Redux**: A state management library that efficiently manages the
-  application's state.
+- **[Redux](https://redux.js.org/)**: A state management library that
+  efficiently manages the application's state.
 
-- **React Router**: A declarative routing library for navigating within the
-  application.
+- **[React Router](https://reactrouter.com/)**: A declarative routing library
+  for navigating within the application.
 
-- **Emotion**: A CSS-in-JS library that styles React components.
+- **[Emotion](https://emotion.sh/docs/introduction)**: A CSS-in-JS library that
+  styles React components.
 
-- **Axios**: A promise-based HTTP client that facilitates API requests.
+- **[Axios](https://axios-http.com/)**: A promise-based HTTP client that
+  facilitates API requests.
 
-- **Babel**: A JavaScript compiler that transforms modern JavaScript syntax into
-  browser-compatible code.
+- **[Babel](https://babeljs.io/)**: A JavaScript compiler that transforms modern
+  JavaScript syntax into browser-compatible code.
 
-- **Webpack**: A module bundler responsible for packaging the application's
-  JavaScript and other assets.
+- **[Webpack](https://webpack.js.org/)**: A module bundler responsible for
+  packaging the application's JavaScript and other assets.
 
-- **ESLint**: A JavaScript linter for maintaining code quality and consistency.
+- **[ESLint](https://eslint.org/)**: A JavaScript linter for maintaining code
+  quality and consistency.
 
-- **Prettier**: A code formatter that ensures consistent code formatting.
+- **[Prettier](https://prettier.io/)**: A code formatter that ensures consistent
+  code formatting.
 
 ## Getting Started
 
