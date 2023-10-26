@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/phonebook/static/css/main.26ad1224.css",
-    "main.js": "/phonebook/static/js/main.ed41ebdb.js",
+    "main.js": "/phonebook/static/js/main.72062942.js",
     "static/js/76.b0920b00.chunk.js": "/phonebook/static/js/76.b0920b00.chunk.js",
     "static/js/225.6c0a32ca.chunk.js": "/phonebook/static/js/225.6c0a32ca.chunk.js",
     "static/js/56.8e41a5de.chunk.js": "/phonebook/static/js/56.8e41a5de.chunk.js",
@@ -9,7 +9,7 @@
     "static/js/725.ffbc9c64.chunk.js": "/phonebook/static/js/725.ffbc9c64.chunk.js",
     "index.html": "/phonebook/index.html",
     "main.26ad1224.css.map": "/phonebook/static/css/main.26ad1224.css.map",
-    "main.ed41ebdb.js.map": "/phonebook/static/js/main.ed41ebdb.js.map",
+    "main.72062942.js.map": "/phonebook/static/js/main.72062942.js.map",
     "76.b0920b00.chunk.js.map": "/phonebook/static/js/76.b0920b00.chunk.js.map",
     "225.6c0a32ca.chunk.js.map": "/phonebook/static/js/225.6c0a32ca.chunk.js.map",
     "56.8e41a5de.chunk.js.map": "/phonebook/static/js/56.8e41a5de.chunk.js.map",
@@ -18,6 +18,6 @@
   },
   "entrypoints": [
     "static/css/main.26ad1224.css",
-    "static/js/main.ed41ebdb.js"
+    "static/js/main.72062942.js"
   ]
 }
