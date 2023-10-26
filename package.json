@@ -1,8 +1,8 @@
 {
-  "name": "react-homework-template",
+  "name": "phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://MoskaletsOleksandr.github.io/goit-react-hw-08-phonebook/",
+  "homepage": "https://MoskaletsOleksandr.github.io/phonebook/",
   "dependencies": {
     "@emotion/styled": "^11.11.0",
     "@reduxjs/toolkit": "^1.9.5",
